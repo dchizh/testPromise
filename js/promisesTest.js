@@ -26,24 +26,35 @@ function getURL(url){
     });
 }
 
+
 // асинхронно
 Promise.all( URLs.map(getURL) )
-    .then(
-        results => {console.log(results)}
+    .then(function(results) {
+        console.log(results) }
     );
 // последовательно
-var allRequests = Promise.resolve();
+
 var results = [];
+var allRequests = Promise.resolve();
 URLs.forEach(function(url) {
     allRequests = allRequests
-        .then(() => getURL(url))
-        .then((result) => {
-            results.push(result);
-        });
+        .then(
+            function(){
+                return getURL(url)
+            }
+        )
+        .then(
+            function (result){
+                results.push(result);
+            }
+        )
     });
 
-allRequests.then(() => {
-    console.log(results);
-});
+allRequests.then(
+    function(){
+        console.log(results)
+    }
+);
+
 
 
