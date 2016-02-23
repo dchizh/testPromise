@@ -1,0 +1,104 @@
+<div class="container">
+    <div class="info-container">
+        <div class="next-prev-container">
+            <a ng-href="/pokemon/{{infoCtrl.pokeSrv.pokemonList[infoCtrl.pokemonNum - 1].resource_uri | textGetPokeID}}">
+                <div class="prev-container">
+                    {{infoCtrl.pokeSrv.pokemonList[infoCtrl.pokemonNum - 1].resource_uri | textGetPokeTitleID}}
+                    <span>{{infoCtrl.pokeSrv.pokemonList[infoCtrl.pokemonNum - 1].name}}</span>
+                </div>
+            </a>
+            <a ng-href="/pokemon/{{infoCtrl.pokeSrv.pokemonList[infoCtrl.pokemonNum + 1].resource_uri | textGetPokeID}}">
+                <div class="next-container">
+                    <span class="fupper">{{infoCtrl.pokeSrv.pokemonList[infoCtrl.pokemonNum + 1].name}}</span>
+                    {{infoCtrl.pokeSrv.pokemonList[infoCtrl.pokemonNum + 1].resource_uri | textGetPokeTitleID}}
+                </div>
+            </a>
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="title-container">
+            {{infoCtrl.pokeSrv.pokemonList[infoCtrl.pokemonNum].resource_uri | textGetPokeTitleID}}
+            <span>{{infoCtrl.pokeSrv.pokemonList[infoCtrl.pokemonNum].name}}</span>
+        </div>
+
+        <div class="details-container">
+            <div class="details-info-container">
+                <div class="details-info-container-left">
+                    <div class="details-info-pic image-placeholder">
+                        <span class="vertical-helper"></span>
+                        <img class="image-opacity-loading image-opacity-hidden"
+                             ng-if="infoCtrl.pokeSrv.pokemonList[infoCtrl.pokemonNum].bigImage"
+                             ng-src="{{infoCtrl.pokeSrv.pokemonList[infoCtrl.pokemonNum].bigImage}}">
+                        <div class="item-types">
+                            <div class="item-type"
+                                 ng-repeat="type in infoCtrl.pokeSrv.pokemonList[infoCtrl.pokemonNum].types"
+                                 ng-class="type.color">{{type.name}}</div>
+                        </div>
+                    </div>
+                    <div class="details-info-description">
+                        {{infoCtrl.pokeSrv.pokemonList[infoCtrl.pokemonNum].descriptionText}}
+                    </div>
+                </div>
+
+                <div class="details-info-container-right">
+                    <div class="item-params-container">
+                        <div class="item-param">
+                            <div class="item-param-title">Height</div>
+                            <div class="item-param-value">
+                                {{infoCtrl.pokeSrv.pokemonList[infoCtrl.pokemonNum].height}}
+                                <span ng-if="infoCtrl.pokeSrv.pokemonList[infoCtrl.pokemonNum].height">m</span>
+                            </div>
+                        </div>
+                        <div class="item-param">
+                            <div class="item-param-title">Category</div>
+                            <div class="item-param-value">{{infoCtrl.pokeSrv.pokemonList[infoCtrl.pokemonNum].category}}</div>
+                        </div>
+                        <div class="item-param">
+                            <div class="item-param-title">Weight</div>
+                            <div class="item-param-value">
+                                {{infoCtrl.pokeSrv.pokemonList[infoCtrl.pokemonNum].weight}}
+                                <span ng-if="infoCtrl.pokeSrv.pokemonList[infoCtrl.pokemonNum].height">kg</span>
+                            </div>
+                        </div>
+                        <div class="item-param">
+                            <div class="item-param-title">Abilities</div>
+                            <div class="item-param-value">{{infoCtrl.pokeSrv.pokemonList[infoCtrl.pokemonNum].abilities[(infoCtrl.pokeSrv.pokemonList[infoCtrl.pokemonNum].abilities.length - 1)].name}}</div>
+                        </div>
+                        <div class="item-param">
+                            <div class="item-param-title">Gender</div>
+                            <div class="item-param-value">{{infoCtrl.pokeSrv.pokemonList[infoCtrl.pokemonNum].male_female_ratio}}</div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+
+                    <div class="item-base-stats">
+                        <div class="item-base-stats-title">Base Stats</div>
+                        <div class="item-stats-container">
+                            <div class="item-stat-block" range-bar range-title="HP"  range-value="{{infoCtrl.pokeSrv.pokemonList[infoCtrl.pokemonNum].hp / 2}}" ></div>
+                            <div class="item-stat-block" range-bar range-title="Atack" range-value="{{infoCtrl.pokeSrv.pokemonList[infoCtrl.pokemonNum].attack / 2}}" ></div>
+                            <div class="item-stat-block" range-bar range-title="Defence" range-value="{{infoCtrl.pokeSrv.pokemonList[infoCtrl.pokemonNum].defense / 2}}" ></div>
+                            <div class="item-stat-block" range-bar range-title="Special Attack" range-value="{{infoCtrl.pokeSrv.pokemonList[infoCtrl.pokemonNum].sp_atk / 2}}" ></div>
+                            <div class="item-stat-block" range-bar range-title="Special Defense" range-value="{{infoCtrl.pokeSrv.pokemonList[infoCtrl.pokemonNum].sp_def / 2}}" ></div>
+                            <div class="item-stat-block" range-bar range-title="Speed" range-value="{{infoCtrl.pokeSrv.pokemonList[infoCtrl.pokemonNum].speed / 2}}" ></div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="move-container-title">Moves</div>
+
+            <div class="details-moves-container">
+                <div class="move-container" ng-repeat="move in infoCtrl.pokeSrv.pokemonList[infoCtrl.pokemonNum].moves" >
+                    <div class="move-block">{{move.name}}</div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="info-explore-more-container">
+                <button class="btn btn-orange btn-minw-230" ng-click="infoCtrl.netSrv.goToUrl('/');">Explore more Pokémon</button>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,34 @@
+<div class="container">
+    <div class="catalog-container" infinite-scroll="catalogCtrl.scrollPage();" infinite-scroll-distance='0.05'>
+        <h1>Pokédex</h1>
+        <div class="catalog-items" ng-class="catalogCtrl.loading?'loading':''">
+            <div class="item-container" ng-repeat="pokemon in catalogCtrl.activePokeList">
+                <a ng-href="/pokemon/{{pokemon.id}}">
+                    <div class="item">
+                        <div class="item-title">
+                            <span>{{pokemon.titleId}}</span> {{pokemon.name}}
+                        </div>
+                        <div class="item-img image-placeholder">
+                            <span class="vertical-helper"></span>
+                            <img class="image-opacity-loading image-opacity-hidden"
+                                 ng-if="pokemon.image"
+                                 ng-src="{{pokemon.image}}">
+                        </div>
+                        <div class="item-types">
+                            <div class="item-type"
+                                 ng-repeat="type in pokemon.types"
+                                 ng-class="type.color">{{type.name}}</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="clearfix"></div>
+            <div class="loading-container">
+                <img src="../img/loading.gif">
+            </div>
+        </div>
+        <div class="catalog-load-more-container" ng-if="catalogCtrl.showLoadMore">
+            <button class="btn btn-blue btn-minw-210" ng-click="catalogCtrl.showMore();">Load more</button>
+        </div>
+    </div>
+</div>

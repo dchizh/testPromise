@@ -1,0 +1,37 @@
+@import "variable";
+@import "mixins";
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  outline: none !important;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html, body{
+  height: 100%;
+  min-height: 100%;
+}
+
+body {
+  color: $color-black;
+  background-color: $color-white;
+  font-size: 14px;
+  font-family: "Times New Roman", Times, serif;
+  font-weight: 400;
+  width: 100%;
+  align-content: center;
+  margin: 0;
+}
+.container{
+  margin: 0 auto;
+  min-width: 1024px;
+  width: 1054px;
+  padding: 0 15px;
+}
+h1{
+  padding: 24px 0;
+  text-align: center;
+}
